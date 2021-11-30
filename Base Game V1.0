@@ -1,0 +1,68 @@
+## A Game For Playing Rock, Paper, Scissors! ##
+
+## Import Statements ##
+
+import random
+import time
+
+## Game Text Definition ##
+
+def Game_Text():
+    print("*Rock*")
+    time.sleep(1)
+    print("*Paper*")
+    time.sleep(1)
+    print("*Scissors*")
+    time.sleep(1)
+    print("*Shoot*")
+    print("Your opponent chose " + CPU_Choice)
+
+## Game Definition ##
+
+def RPC():
+    global CPU_Choice
+
+## Player Input ##
+
+    Player_Choice = input("Rock, Paper, or Scissors?: ")
+
+## CPU Random Input Generator ##
+
+    Random_Input = random.randrange(0, 3, 1)
+    if Random_Input == 0:
+        CPU_Choice = "Rock"
+    elif Random_Input == 1:
+        CPU_Choice = "Paper"
+    elif Random_Input == 2:
+        CPU_Choice = "Scissors"
+
+## Win/Loss Logic ##
+
+    # Tied Condition #
+    if Player_Choice == CPU_Choice:
+        Game_Text()
+        print("You Tied!")
+    # Loss Condition #
+    elif Player_Choice == "Rock" and CPU_Choice == "Paper" or Player_Choice == "Paper" and CPU_Choice == "Scissors" or Player_Choice == "Scissors" and CPU_Choice == "Rock":
+        Game_Text()
+        print("You Lost!")
+    # Win Condition #
+    elif Player_Choice == "Rock" and CPU_Choice == "Scissors" or Player_Choice == "Paper" and CPU_Choice == "Rock" or Player_Choice == "Scissors" and CPU_Choice == "Paper":
+        Game_Text()
+        print("You Win!")
+
+## Game Loop ##
+
+Game_Loop = True
+
+while Game_Loop == True:
+    # Run The Main Game Loop #
+    RPC()
+    time.sleep(2)
+
+    # Logic For If The Game Resets Or Exits #
+    Reset = input("Would you like to play again? (Y/N): ")
+    if Reset == "Y" or Reset == 'y':
+        Game_Loop = True
+    elif Reset == "N" or Reset == "n":
+        Game_Loop = False
